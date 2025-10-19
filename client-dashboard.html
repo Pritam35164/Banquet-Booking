@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard - BanquetBook</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <span>BanquetBook</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" onclick="showSection('bookings')">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>My Bookings</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('payments')">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payments</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('profile')">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="search-results.html" class="nav-item" onclick="event.preventDefault(); goToSearch();">
+                    <i class="fas fa-search"></i>
+                    <span>Find Venues</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="btn btn-danger btn-block">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div>
+                    <h1>Welcome, <span id="userName">Client</span>!</h1>
+                    <p>Manage your bookings and payments</p>
+                </div>
+            </header>
+
+            <!-- My Bookings Section -->
+            <section id="bookingsSection" class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-check"></i> My Bookings</h2>
+                    <a href="search-results.html" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> New Booking
+                    </a>
+                </div>
+
+                <div class="bookings-grid" id="bookingsGrid">
+                    <!-- Bookings will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Payments Section -->
+            <section id="paymentsSection" class="dashboard-section" style="display: none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-credit-card"></i> Payments & Invoices</h2>
+                </div>
+
+                <div class="payments-list" id="paymentsList">
+                    <!-- Payments will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profileSection" class="dashboard-section" style="display: none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-user"></i> Profile Management</h2>
+                </div>
+
+                <div class="profile-card">
+                    <form id="profileForm" onsubmit="updateProfile(event)">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-user"></i> Full Name
+                            </label>
+                            <input type="text" id="profileName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-envelope"></i> Email Address
+                            </label>
+                            <input type="email" id="profileEmail" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-phone"></i> Phone Number
+                            </label>
+                            <input type="tel" id="profilePhone" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/client-dashboard.js"></script>
+</body>
+</html>

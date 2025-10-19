@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BanquetBook - Revolutionizing Banquet Bookings in India</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/homepage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>BanquetBook</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="search-results.html">Find Venues</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="auth.html" class="btn btn-outline">Login</a>
+                    <a href="auth.html?signup=true" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Revolutionize Your Banquet Bookings</h1>
+                <p class="hero-subtitle">Discover the perfect venue for your special moments across India</p>
+                
+                <!-- Search Bar -->
+                <div class="search-box">
+                    <div class="search-field">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <select id="citySearch" class="search-input">
+                            <option value="">Select City</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Ahmedabad">Ahmedabad</option>
+                            <option value="Jaipur">Jaipur</option>
+                            <option value="Lucknow">Lucknow</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Indore">Indore</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="date" id="eventDate" class="search-input" placeholder=" Event Date">
+                    </div>
+                    <div class="search-field">
+                        <i class="fas fa-users"></i>
+                        <input type="number" id="guestCount" class="search-input" placeholder=" Number of Guests" min="1">
+                    </div>
+                    <button class="btn btn-search" onclick="searchVenues()">
+                        <i class="fas fa-search"></i> Search Venues
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Venues Section -->
+    <section class="popular-venues">
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular Banquet Halls</h2>
+                <p>Handpicked venues for your perfect celebration</p>
+            </div>
+            
+            <div class="venues-grid" id="popularVenues">
+                <!-- Venue Card 1 -->
+                <div class="venue-card" onclick="goToVenueDetails(1)">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f29da8c14f?w=800" alt="Royal Palace Banquet">
+                        <div class="venue-badge">Premium</div>
+                    </div>
+                    <div class="venue-info">
+                        <h3>Royal Palace Banquet</h3>
+                        <div class="venue-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>South Delhi, Delhi</span>
+                        </div>
+                        <div class="venue-details">
+                            <div class="venue-capacity">
+                                <i class="fas fa-users"></i>
+                                <span>500-1000 Guests</span>
+                            </div>
+                            <div class="venue-price">
+                                <span class="price">₹2,500</span>
+                                <span class="price-unit">/plate</span>
+                            </div>
+                        </div>
+                        <div class="venue-amenities">
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                            <span class="amenity"><i class="fas fa-wind"></i> AC</span>
+                            <span class="amenity"><i class="fas fa-utensils"></i> Catering</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue Card 2 -->
+                <div class="venue-card" onclick="goToVenueDetails(2)">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" alt="Grand Crystal Hall">
+                        <div class="venue-badge featured">Featured</div>
+                    </div>
+                    <div class="venue-info">
+                        <h3>Grand Crystal Hall</h3>
+                        <div class="venue-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Bandra West, Mumbai</span>
+                        </div>
+                        <div class="venue-details">
+                            <div class="venue-capacity">
+                                <i class="fas fa-users"></i>
+                                <span>300-800 Guests</span>
+                            </div>
+                            <div class="venue-price">
+                                <span class="price">₹3,000</span>
+                                <span class="price-unit">/plate</span>
+                            </div>
+                        </div>
+                        <div class="venue-amenities">
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                            <span class="amenity"><i class="fas fa-wind"></i> AC</span>
+                            <span class="amenity"><i class="fas fa-music"></i> DJ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue Card 3 -->
+                <div class="venue-card" onclick="goToVenueDetails(3)">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800" alt="Emerald Gardens">
+                    </div>
+                    <div class="venue-info">
+                        <h3>Emerald Gardens</h3>
+                        <div class="venue-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Whitefield, Bangalore</span>
+                        </div>
+                        <div class="venue-details">
+                            <div class="venue-capacity">
+                                <i class="fas fa-users"></i>
+                                <span>200-500 Guests</span>
+                            </div>
+                            <div class="venue-price">
+                                <span class="price">₹2,000</span>
+                                <span class="price-unit">/plate</span>
+                            </div>
+                        </div>
+                        <div class="venue-amenities">
+                            <span class="amenity"><i class="fas fa-tree"></i> Garden</span>
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                            <span class="amenity"><i class="fas fa-utensils"></i> Catering</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue Card 4 -->
+                <div class="venue-card" onclick="goToVenueDetails(4)">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Sapphire Celebration Hall">
+                        <div class="venue-badge">New</div>
+                    </div>
+                    <div class="venue-info">
+                        <h3>Sapphire Celebration Hall</h3>
+                        <div class="venue-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Banjara Hills, Hyderabad</span>
+                        </div>
+                        <div class="venue-details">
+                            <div class="venue-capacity">
+                                <i class="fas fa-users"></i>
+                                <span>400-700 Guests</span>
+                            </div>
+                            <div class="venue-price">
+                                <span class="price">₹2,200</span>
+                                <span class="price-unit">/plate</span>
+                            </div>
+                        </div>
+                        <div class="venue-amenities">
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                            <span class="amenity"><i class="fas fa-wind"></i> AC</span>
+                            <span class="amenity"><i class="fas fa-wifi"></i> WiFi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue Card 5 -->
+                <div class="venue-card" onclick="goToVenueDetails(5)">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800" alt="Golden Arch Banquet">
+                    </div>
+                    <div class="venue-info">
+                        <h3>Golden Arch Banquet</h3>
+                        <div class="venue-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Park Street, Kolkata</span>
+                        </div>
+                        <div class="venue-details">
+                            <div class="venue-capacity">
+                                <i class="fas fa-users"></i>
+                                <span>250-600 Guests</span>
+                            </div>
+                            <div class="venue-price">
+                                <span class="price">₹1,800</span>
+                                <span class="price-unit">/plate</span>
+                            </div>
+                        </div>
+                        <div class="venue-amenities">
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                            <span class="amenity"><i class="fas fa-wind"></i> AC</span>
+                            <span class="amenity"><i class="fas fa-utensils"></i> Catering</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Venue Card 6 -->
+                <div class="venue-card" onclick="goToVenueDetails(6)">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?w=800" alt="Majestic Convention Center">
+                        <div class="venue-badge featured">Featured</div>
+                    </div>
+                    <div class="venue-info">
+                        <h3>Majestic Convention Center</h3>
+                        <div class="venue-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Koramangala, Chennai</span>
+                        </div>
+                        <div class="venue-details">
+                            <div class="venue-capacity">
+                                <i class="fas fa-users"></i>
+                                <span>600-1200 Guests</span>
+                            </div>
+                            <div class="venue-price">
+                                <span class="price">₹2,800</span>
+                                <span class="price-unit">/plate</span>
+                            </div>
+                        </div>
+                        <div class="venue-amenities">
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                            <span class="amenity"><i class="fas fa-wind"></i> AC</span>
+                            <span class="amenity"><i class="fas fa-video"></i> AV System</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-all-btn">
+                <a href="search-results.html" class="btn btn-primary-outline">View All Venues</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose BanquetBook?</h2>
+                <p>Your trusted partner for seamless event planning</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search-location"></i>
+                    </div>
+                    <h3>Easy Search & Filter</h3>
+                    <p>Find your perfect venue with powerful search and filtering options across India</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Real-Time Availability</h3>
+                    <p>View live availability calendars and book your preferred date instantly</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Payments</h3>
+                    <p>Safe and secure payment gateway with multiple payment options in INR</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated customer support to assist you throughout your booking journey</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-crown"></i>
+                        <span>BanquetBook</span>
+                    </div>
+                    <p>Revolutionizing banquet bookings across India</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="search-results.html">Find Venues</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>For Venue Owners</h4>
+                    <ul>
+                        <li><a href="auth.html?signup=true&role=owner">List Your Venue</a></li>
+                        <li><a href="admin-dashboard.html">Owner Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@banquetbook.in</li>
+                        <li><i class="fas fa-phone"></i> +91 1800-123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 BanquetBook. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/homepage.js"></script>
+</body>
+</html>

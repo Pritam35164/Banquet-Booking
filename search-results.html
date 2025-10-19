@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Venues - BanquetBook</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/search-results.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>BanquetBook</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="search-results.html" class="active">Find Venues</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="auth.html" class="btn btn-outline">Login</a>
+                    <a href="auth.html?signup=true" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Header -->
+    <section class="search-header">
+        <div class="container">
+            <div class="search-box-compact">
+                <div class="search-field">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <select id="cityFilter" class="search-input">
+                        <option value="">All Cities</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Ahmedabad">Ahmedabad</option>
+                        <option value="Jaipur">Jaipur</option>
+                        <option value="Lucknow">Lucknow</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Indore">Indore</option>
+                    </select>
+                </div>
+                <div class="search-field">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" id="dateFilter" class="search-input" placeholder="Event Date">
+                </div>
+                <div class="search-field">
+                    <i class="fas fa-users"></i>
+                    <input type="number" id="guestsFilter" class="search-input" placeholder="Guests" min="1">
+                </div>
+                <button class="btn btn-search" onclick="applyFilters()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="search-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Filters Sidebar -->
+                <aside class="filters-sidebar">
+                    <div class="filter-header">
+                        <h3><i class="fas fa-filter"></i> Filters</h3>
+                        <button class="btn-clear-filters" onclick="clearFilters()">Clear All</button>
+                    </div>
+
+                    <!-- Capacity Filter -->
+                    <div class="filter-section">
+                        <h4>Guest Capacity</h4>
+                        <div class="filter-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="capacity" value="0-300">
+                                <span>0 - 300 Guests</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="capacity" value="300-500">
+                                <span>300 - 500 Guests</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="capacity" value="500-800">
+                                <span>500 - 800 Guests</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="capacity" value="800+">
+                                <span>800+ Guests</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Filter -->
+                    <div class="filter-section">
+                        <h4>Price Per Plate</h4>
+                        <div class="price-range">
+                            <input type="range" id="priceRange" min="1000" max="5000" step="100" value="5000">
+                            <div class="price-labels">
+                                <span>₹1,000</span>
+                                <span id="maxPrice">₹5,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amenities Filter -->
+                    <div class="filter-section">
+                        <h4>Amenities</h4>
+                        <div class="filter-options">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="amenities" value="Parking">
+                                <span><i class="fas fa-parking"></i> Parking</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="amenities" value="AC">
+                                <span><i class="fas fa-wind"></i> Air Conditioning</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="amenities" value="Catering">
+                                <span><i class="fas fa-utensils"></i> Catering</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="amenities" value="DJ">
+                                <span><i class="fas fa-music"></i> DJ/Music System</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="amenities" value="WiFi">
+                                <span><i class="fas fa-wifi"></i> WiFi</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="amenities" value="Garden">
+                                <span><i class="fas fa-tree"></i> Garden/Outdoor</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" name="amenities" value="AV System">
+                                <span><i class="fas fa-video"></i> AV System</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="applyFilters()" style="width: 100%; margin-top: 1rem;">
+                        Apply Filters
+                    </button>
+                </aside>
+
+                <!-- Results Section -->
+                <div class="results-section">
+                    <div class="results-header">
+                        <h2 id="resultsCount">All Venues</h2>
+                        <div class="sort-options">
+                            <label>Sort by:</label>
+                            <select id="sortBy" onchange="applyFilters()">
+                                <option value="recommended">Recommended</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="capacity">Capacity</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="venues-list" id="venuesList">
+                        <!-- Venues will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-crown"></i>
+                        <span>BanquetBook</span>
+                    </div>
+                    <p>Revolutionizing banquet bookings across India</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="search-results.html">Find Venues</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>For Venue Owners</h4>
+                    <ul>
+                        <li><a href="auth.html?signup=true&role=owner">List Your Venue</a></li>
+                        <li><a href="admin-dashboard.html">Owner Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@banquetbook.in</li>
+                        <li><i class="fas fa-phone"></i> +91 1800-123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 BanquetBook. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/search-results.js"></script>
+</body>
+</html>

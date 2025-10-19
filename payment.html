@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - BanquetBook</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/payment.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="payment-container">
+        <div class="container">
+            <div class="back-link-container">
+                <a href="client-dashboard.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+
+            <div class="payment-wrapper">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2><i class="fas fa-receipt"></i> Order Summary</h2>
+                    <div class="summary-card" id="orderSummary">
+                        <!-- Will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Payment Form -->
+                <div class="payment-form-container">
+                    <h2><i class="fas fa-credit-card"></i> Payment Details</h2>
+                    
+                    <!-- Payment Method Selection -->
+                    <div class="payment-methods">
+                        <h3>Select Payment Method</h3>
+                        <div class="method-options">
+                            <label class="method-option">
+                                <input type="radio" name="paymentMethod" value="card" checked onchange="showPaymentForm('card')">
+                                <div class="method-card">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Credit/Debit Card</span>
+                                </div>
+                            </label>
+                            
+                            <label class="method-option">
+                                <input type="radio" name="paymentMethod" value="netbanking" onchange="showPaymentForm('netbanking')">
+                                <div class="method-card">
+                                    <i class="fas fa-university"></i>
+                                    <span>Net Banking</span>
+                                </div>
+                            </label>
+                            
+                            <label class="method-option">
+                                <input type="radio" name="paymentMethod" value="upi" onchange="showPaymentForm('upi')">
+                                <div class="method-card">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>UPI</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Card Payment Form -->
+                    <form id="cardForm" class="payment-form" onsubmit="processPayment(event)">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-credit-card"></i> Card Number
+                            </label>
+                            <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" required pattern="\d{4}\s\d{4}\s\d{4}\s\d{4}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-user"></i> Cardholder Name
+                            </label>
+                            <input type="text" placeholder="Name on card" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-calendar"></i> Expiry Date
+                                </label>
+                                <input type="text" placeholder="MM/YY" maxlength="5" required pattern="\d{2}/\d{2}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-lock"></i> CVV
+                                </label>
+                                <input type="text" placeholder="123" maxlength="3" required pattern="\d{3}">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-block btn-large">
+                            <i class="fas fa-lock"></i> Pay <span id="totalAmount"></span>
+                        </button>
+                    </form>
+
+                    <!-- Net Banking Form -->
+                    <form id="netbankingForm" class="payment-form" style="display: none;" onsubmit="processPayment(event)">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-university"></i> Select Bank
+                            </label>
+                            <select required>
+                                <option value="">Choose your bank</option>
+                                <option value="sbi">State Bank of India</option>
+                                <option value="hdfc">HDFC Bank</option>
+                                <option value="icici">ICICI Bank</option>
+                                <option value="axis">Axis Bank</option>
+                                <option value="kotak">Kotak Mahindra Bank</option>
+                                <option value="pnb">Punjab National Bank</option>
+                                <option value="other">Other Banks</option>
+                            </select>
+                        </div>
+
+                        <div class="info-box">
+                            <i class="fas fa-info-circle"></i>
+                            <p>You will be redirected to your bank's secure login page to complete the payment.</p>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-block btn-large">
+                            <i class="fas fa-external-link-alt"></i> Continue to Bank
+                        </button>
+                    </form>
+
+                    <!-- UPI Form -->
+                    <form id="upiForm" class="payment-form" style="display: none;" onsubmit="processPayment(event)">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-mobile-alt"></i> UPI ID
+                            </label>
+                            <input type="text" placeholder="yourname@upi" required pattern="[a-zA-Z0-9._-]+@[a-zA-Z]+">
+                        </div>
+
+                        <div class="upi-apps">
+                            <p>Or pay using:</p>
+                            <div class="upi-buttons">
+                                <button type="button" class="upi-btn" onclick="payWithApp('gpay')">
+                                    <i class="fab fa-google-pay"></i> Google Pay
+                                </button>
+                                <button type="button" class="upi-btn" onclick="payWithApp('phonepe')">
+                                    PhonePe
+                                </button>
+                                <button type="button" class="upi-btn" onclick="payWithApp('paytm')">
+                                    Paytm
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-block btn-large">
+                            <i class="fas fa-mobile-alt"></i> Pay with UPI
+                        </button>
+                    </form>
+
+                    <!-- Security Badge -->
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <strong>100% Secure Payment</strong>
+                            <p>Your payment information is encrypted and secure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/payment.js"></script>
+</body>
+</html>

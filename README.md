@@ -89,7 +89,7 @@ You can create accounts directly through the signup page:
 - Secure payment forms
 - Dashboard widgets and statistics
 
-## 📱 Pages Overview
+## Pages Overview
 
 ### 1. Homepage (`index.html`)
 - Welcome banner with mission statement
@@ -231,7 +231,7 @@ The application uses browser localStorage for data persistence:
 - Revenue calculations
 - Client information management
 
-## 🔧 Technical Details
+## Technical Details
 
 ### Technologies Used
 - **HTML5**: Semantic markup
@@ -301,7 +301,3 @@ This project demonstrates:
 For questions or issues with the application, refer to the code comments or contact information in the footer.
 
 ---
-
-**Built for revolutionizing banquet bookings in India**
-#   B a n q u e t - B o o k i n g  
- 

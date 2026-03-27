@@ -5,6 +5,7 @@ services:
     plan: free
     buildCommand: npm install
     startCommand: npm start
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
@@ -14,15 +15,6 @@ services:
         fromDatabase:
           name: banquetbook
           property: connectionString
-    autoDeploy: true
-    staticPublishPath: ./
-    routes:
-      - type: http
-        path: /
-        destination: /index.html
-      - type: http
-        path: /api
-        destination: /api
 
 databases:
   - name: banquetbook

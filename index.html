@@ -44,7 +44,7 @@
                 <div class="search-box">
                     <div class="search-field">
                         <i class="fas fa-map-marker-alt"></i>
-                        <select id="citySearch" class="search-input">
+                        <select id="citySearch" class="search-input" s>
                             <option value="">Select City</option>
                             <option value="Mumbai">Mumbai</option>
                             <option value="Delhi">Delhi</option>
@@ -59,6 +59,24 @@
                             <option value="Chandigarh">Chandigarh</option>
                             <option value="Indore">Indore</option>
                         </select>
+                        <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                        const select = document.getElementById("citySearch");
+
+                        // Get all <option> elements (excluding the first "Select City")
+                        const options = Array.from(select.options).slice(1);
+
+                        // Sort alphabetically
+                        options.sort((a, b) => a.text.localeCompare(b.text));
+
+                        // Remove old options (except first one)
+                        select.length = 1;
+
+                        // Add sorted options back
+                        options.forEach(option => select.add(option));
+                        });
+                    </script>
+
                     </div>
                     <div class="search-field">
                         <i class="fas fa-calendar-alt"></i>

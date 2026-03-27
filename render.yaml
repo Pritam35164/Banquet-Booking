@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: banquetbook
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: banquetbook
+          property: connectionString
+    autoDeploy: true
+    staticPublishPath: ./
+    routes:
+      - type: http
+        path: /
+        destination: /index.html
+      - type: http
+        path: /api
+        destination: /api
+
+databases:
+  - name: banquetbook
+    ipAllowList: []
